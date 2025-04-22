@@ -1,0 +1,119 @@
+MergeSort(array A, integer left, integer right)
+1. if left < right then
+2.     mid = (left + right) / 2
+3.     MergeSort(A, left, mid)
+4.     MergeSort(A, mid + 1, right)
+5.     Merge(A, left, mid, right)
+
+Merge(array A, integer left, integer mid, integer right)
+1. Create two temporary arrays: L and R
+2. for i from 0 to mid - left do
+3.     L[i] = A[left + i]
+4. for j from 0 to right - mid do
+5.     R[j] = A[mid + 1 + j]
+6. Initialize indices i = 0, j = 0, k = left
+7. while i < size of L and j < size of R do
+8.     if L[i] <= R[j] then
+9.         A[k] = L[i]
+10.        i++
+11.    else
+12.        A[k] = R[j]
+13.        j++
+14.    k++
+15. while i < size of L do
+16.    A[k] = L[i]
+17.    i++
+18.    k++
+19. while j < size of R do
+20.    A[k] = R[j]
+21.    j++
+22.    k++
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to merge two halves
+void merge(vector<int>& A, int left, int mid, int right) {
+    int n1 = mid - left + 1; // Size of left subarray
+    int n2 = right - mid;    // Size of right subarray
+
+    // Create temporary arrays
+    vector<int> L(n1);
+    vector<int> R(n2);
+
+    // Copy data to temporary arrays L[] and R[]
+    for (int i = 0; i < n1; i++)
+        L[i] = A[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = A[mid + 1 + j];
+
+    // Merge the temporary arrays back into A[left..right]
+    int i = 0; // Initial index of first subarray
+    int j = 0; // Initial index of second subarray
+    int k = left; // Initial index of merged subarray
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            A[k] = L[i];
+            i++;
+        } else {
+            A[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of L[], if there are any
+    while (i < n1) {
+        A[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of R[], if there are any
+    while (j < n2) {
+        A[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+// Function to implement Merge Sort
+void mergeSort(vector<int>& A, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2; // Avoid overflow
+
+        // Sort first and second halves
+        mergeSort(A, left, mid);
+        mergeSort(A, mid + 1, right);
+
+        // Merge the sorted halves
+        merge(A, left, mid, right);
+    }
+}
+
+// Function to print the array
+void printArray(const vector<int>& A) {
+    for (int num : A) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+// Main function
+int main() {
+    vector<int> arr = {38, 27, 43, 3, 9, 82, 10};
+
+    cout << "Original array: ";
+    printArray(arr);
+
+    mergeSort(arr, 0, arr.size() - 1);
+
+    cout << "Sorted array: ";
+    printArray(arr);
+
+    return 0;
+}
