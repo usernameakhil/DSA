@@ -1,0 +1,23 @@
+RemoveElement(array nums, integer val)
+1. Initialize index = 0
+2. for i from 0 to length of nums - 1 do
+3.     if nums[i] != val then
+4.         nums[index] = nums[i]
+5.         index++
+6. return index
+
+
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int index = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != val) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index;
+    }
+};
