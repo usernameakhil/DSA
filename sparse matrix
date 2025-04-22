@@ -1,0 +1,56 @@
+Function to Read Sparse Matrix
+
+Function readMatrix(Integer numRows, Integer numCols) 
+    Integer numElements
+    Print "Enter the number of non-zero elements:"
+    Read numElements
+    
+    Array sparseMatrix[numElements] of SparseMatrixElement
+    
+    For i from 0 to numElements - 1 do
+        Print "Enter row, column, and value for element", i + 1, ":"
+        Read sparseMatrix[i].row
+        Read sparseMatrix[i].col
+        Read sparseMatrix[i].value
+    End For
+    
+    Return sparseMatrix
+End Function
+
+
+Function to Print Sparse Matrix
+
+Function printMatrix(Array sparseMatrix, Integer numElements) 
+    Print "Sparse Matrix Representation:"
+    For i from 0 to numElements - 1 do
+        Print "Row:", sparseMatrix[i].row, "Column:", sparseMatrix[i].col, "Value:", sparseMatrix[i].value
+    End For
+End Function
+
+
+
+Main Function
+
+Function main()
+    Integer numRows, numCols
+    Print "Enter the number of rows and columns in the matrix:"
+    Read numRows
+    Read numCols
+    
+    Array sparseMatrix = readMatrix(numRows, numCols)
+    Integer numElements = length of sparseMatrix
+    
+    printMatrix(sparseMatrix, numElements)
+End Function
+
+
+
+
+
+SparseMatrixElement Structure: This structure holds the row index, column index, and value of a non-zero element in the sparse matrix.
+
+readMatrix Function: This function prompts the user to enter the number of non-zero elements and then reads the row, column, and value for each element, storing them in an array of SparseMatrixElement.
+
+printMatrix Function: This function takes the array of sparse matrix elements and prints each non-zero element's row, column, and value.
+
+main Function: This function initializes the process by reading the dimensions of the matrix, calling readMatrix to get the sparse matrix representation, and then calling printMatrix to display the results.
