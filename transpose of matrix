@@ -1,0 +1,60 @@
+Simple Method for Transpose
+
+Function simpleTranspose(Array sparseMatrix, Integer numElements, Integer numRows, Integer numCols)
+    // Create a new array for the transposed matrix
+    Array transposed[numElements] of SparseMatrixElement
+    
+    // Iterate through each element in the original sparse matrix
+    For i from 0 to numElements - 1 do
+        transposed[i].row = sparseMatrix[i].col
+        transposed[i].col = sparseMatrix[i].row
+        transposed[i].value = sparseMatrix[i].value
+    End For
+    
+    Return transposed
+End Function
+
+
+
+Fast Transpose Method
+
+Function fastTranspose(Array sparseMatrix, Integer numElements, Integer numRows, Integer numCols)
+    // Create an array to count the number of elements in each column
+    Array count[numCols] of Integer initialized to 0
+    
+    // Count the number of elements in each column
+    For i from 0 to numElements - 1 do
+        count[sparseMatrix[i].col] = count[sparseMatrix[i].col] + 1
+    End For
+    
+    // Create an array to store the starting index for each column in the transposed matrix
+    Array index[numCols] of Integer initialized to 0
+    index[0] = 0
+    
+    // Calculate the starting index for each column
+    For j from 1 to numCols - 1 do
+        index[j] = index[j - 1] + count[j - 1]
+    End For
+    
+    // Create a new array for the transposed matrix
+    Array transposed[numElements] of SparseMatrixElement
+    
+    // Fill the transposed matrix using the starting indices
+    For i from 0 to numElements - 1 do
+        j = sparseMatrix[i].col
+        transposed[index[j]].row = sparseMatrix[i].col
+        transposed[index[j]].col = sparseMatrix[i].row
+        transposed[index[j]].value = sparseMatrix[i].value
+        index[j] = index[j] + 1
+    End For
+    
+    Return transposed
+End Function
+
+
+
+Simple Transpose Method:
+This method iterates through each element of the original sparse matrix and swaps the row and column indices to create the transposed matrix. The runtime is (O(\text{columns} \times \text{elements})) because it processes each element once.
+
+Fast Transpose Method:
+This method first counts the number of elements in each column and calculates the starting index for each column in the transposed matrix. It then fills the transposed matrix using these indices. The runtime is (O(\text{columns} + \text{elements})) because it processes the elements and columns separately.
