@@ -1,0 +1,29 @@
+TwoSum(array nums, integer target)
+1. Create a map numMap to store numbers and their indices
+2. for i from 0 to length of nums - 1 do
+3.     complement = target - nums[i]
+4.     if complement exists in numMap then
+5.         return [numMap[complement], i]
+6.     numMap[nums[i]] = i
+7. return []
+
+
+
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numMap;
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (numMap.count(complement)) {
+                return {numMap[complement], i};
+            }
+            numMap[nums[i]] = i;
+        }
+        return {};
+    }
+};
