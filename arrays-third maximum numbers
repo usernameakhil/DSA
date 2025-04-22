@@ -1,0 +1,23 @@
+ThirdMax(array nums)
+1. Create a set uniqueNums
+2. for each num in nums do
+3.     add num to uniqueNums
+4. if size of uniqueNums < 3 then
+5.     return max(uniqueNums)
+6. Remove the maximum element from uniqueNums
+7. Remove the maximum element from uniqueNums again
+8. return max(uniqueNums)
+
+
+#include <set>
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        set<int> uniqueNums;
+        for (int num : nums) {
+            uniqueNums.insert(num);
+        }
+        if (uniqueNums.size() < 3) {
+            return *uniqueNums.rbegin();
+        }
+        uniqueNums.erase(*uniqueNums
