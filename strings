@@ -1,0 +1,44 @@
+length of last word
+
+LengthOfLastWord(string s)
+1. Trim the string to remove trailing spaces
+2. Split the string by spaces
+3. Return the length of the last word
+
+
+
+
+reverse string
+
+ReverseString(char[] s)
+1. Initialize two pointers: left = 0, right = length of s - 1
+2. While left < right:
+   a. Swap s[left] and s[right]
+   b. Increment left and decrement right
+
+
+
+
+reverse vowels of string
+
+ReverseVowels(string s)
+1. Initialize two pointers: left and right
+2. While left < right:
+   a. If s[left] is a vowel and s[right] is a vowel:
+      i. Swap s[left] and s[right]
+      ii. Move both pointers inward
+   b. If s[left] is not a vowel, increment left
+   c. If s[right] is not a vowel, decrement right
+
+
+
+number of segments in string
+
+CountSegments(string s)
+1. Trim the string
+2. Split the string by spaces
+3. Count and return the number of non-empty segments
+
+
+
+
