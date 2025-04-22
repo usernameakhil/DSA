@@ -1,0 +1,39 @@
+Function multiplySparseMatrices(Array A, Integer numElementsA, Array B, Integer numElementsB)
+    // Create a result array to store the product
+    Array result of SparseMatrixElement
+    Integer resultIndex = 0
+
+    // Iterate through each element in matrix A
+    For i from 0 to numElementsA - 1 do
+        For j from 0 to numElementsB - 1 do
+            // Check if the column of A matches the row of B
+            If A[i].col == B[j].row then
+                // Calculate the product
+                Integer rowIndex = A[i].row
+                Integer colIndex = B[j].col
+                Integer productValue = A[i].value * B[j].value
+                
+                // Check if the result already has this position
+                Boolean found = false
+                For k from 0 to resultIndex - 1 do
+                    If result[k].row == rowIndex and result[k].col == colIndex then
+                        result[k].value = result[k].value + productValue
+                        found = true
+                        Break
+                    End If
+                End For
+                
+                // If not found, add a new entry to the result
+                If not found then
+                    result[resultIndex].row = rowIndex
+                    result[resultIndex].col = colIndex
+                    result[resultIndex].value = productValue
+                    resultIndex = resultIndex + 1
+                End If
+            End If
+        End For
+    End For
+
+    // Return the result array containing the product of the two matrices
+    Return result
+End Function
