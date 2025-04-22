@@ -1,0 +1,81 @@
+ Matrix Diagonal Sum:
+
+Initialize a sum variable.
+Loop through the matrix, adding elements from both diagonals.
+If the matrix size is odd, subtract the middle element once.
+
+Function diagonalSum(matrix)
+    Integer sum = 0
+    Integer n = length(matrix)
+
+    For i from 0 to n - 1 do
+        sum = sum + matrix[i][i] // Primary diagonal
+        sum = sum + matrix[i][n - 1 - i] // Secondary diagonal
+
+    If n is odd then
+        sum = sum - matrix[n // 2][n // 2] // Subtract the middle element
+
+    Return sum
+End Function
+
+
+
+ Count Negative Numbers in a Sorted Matrix:
+
+Initialize a count variable.
+Iterate through each row from the last column to the first.
+For each row, count how many numbers are negative.
+
+Function countNegatives(matrix)
+    Integer count = 0
+    Integer rows = length(matrix)
+    Integer cols = length(matrix[0])
+
+    For i from 0 to rows - 1 do
+        For j from cols - 1 down to 0 do
+            If matrix[i][j] < 0 then
+                count = count + 1
+            Else
+                Break // Since the row is sorted, no need to check further
+
+    Return count
+End Function
+
+
+
+Lucky Numbers in a Matrix:
+
+For each element, check if it is the minimum in its row and maximum in its column.
+Count such elements.
+
+Function luckyNumbers(matrix)
+    Integer count = 0
+    Integer rows = length(matrix)
+    Integer cols = length(matrix[0])
+
+    For i from 0 to rows - 1 do
+        Integer minInRow = matrix[i][0]
+        For j from 1 to cols - 1 do
+            minInRow = min(minInRow, matrix[i][j])
+
+        For j from 0 to cols - 1 do
+            If matrix[i][j] == minInRow then
+                Boolean isMaxInCol = true
+                For k from 0 to rows - 1 do
+                    If matrix[k][j] > minInRow then
+                        isMaxInCol = false
+                        Break
+                End For
+
+                If isMaxInCol then
+                    count = count + 1
+                End If
+            End If
+        End For
+    End For
+
+    Return count
+End Function
+
+
+
