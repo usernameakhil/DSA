@@ -1,0 +1,26 @@
+MoveZeroes(array nums)
+1. Initialize lastNonZeroFoundAt = 0
+2. for i from 0 to length of nums - 1 do
+3.     if nums[i] != 0 then
+4.         nums[lastNonZeroFoundAt] = nums[i]
+5.         lastNonZeroFoundAt++
+6. for i from lastNonZeroFoundAt to length of nums - 1 do
+7.     nums[i] = 0
+
+
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int lastNonZeroFoundAt = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                nums[lastNonZeroFoundAt] = nums[i];
+                lastNonZeroFoundAt++;
+            }
+        }
+        for (int i = lastNonZeroFoundAt; i < nums.size(); i++) {
+            nums[i] = 0;
+        }
+    }
+};
