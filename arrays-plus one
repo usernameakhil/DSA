@@ -1,0 +1,27 @@
+PlusOne(array digits)
+1. for i from length of digits - 1 down to 0 do
+2.     if digits[i] < 9 then
+3.         digits[i]++
+4.         return digits
+5.     digits[i] = 0
+6. Create a new array result of size length of digits + 1
+7. result[0] = 1
+8. return result
+
+
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        vector<int> result(digits.size() + 1, 0);
+        result[0] = 1;
+        return result;
+    }
+};
